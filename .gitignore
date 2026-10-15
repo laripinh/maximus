@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Ambientes virtuais
+.venv/
+venv/
+
+# Streamlit secrets e configs locais
+.streamlit/secrets.toml
+
+# Dados locais e uploads
+uploads/
+*.db
+*.sqlite
+*.sqlite3
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
