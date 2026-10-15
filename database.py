@@ -183,3 +183,26 @@ def excluir_despesa(despesa_id):
     cursor.execute("DELETE FROM despesas WHERE id = ?", (despesa_id,))
     conn.commit()
     conn.close()
+
+def zerar_lancamentos(limpar_arquivos=True):
+    """Apaga todos os lançamentos de receitas e despesas mantendo as unidades e configurações."""
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM receitas")
+    cursor.execute("DELETE FROM despesas")
+    conn.commit()
+    conn.close()
+
+    if limpar_arquivos:
+        base_dir = os.path.dirname(__file__)
+        for subpasta in ["receitas", "despesas"]:
+            pasta = os.path.join(base_dir, "uploads", subpasta)
+            if os.path.exists(pasta):
+                for f in os.listdir(pasta):
+                    caminho = os.path.join(pasta, f)
+                    try:
+                        if os.path.isfile(caminho):
+                            os.remove(caminho)
+                    except Exception:
+                        pass
+

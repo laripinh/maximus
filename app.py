@@ -377,7 +377,7 @@ elif menu == "📄 Balancete Oficial (PDF)":
 elif menu == "⚙️ Configurações & Unidades":
     st.title("⚙️ Configurações do Condomínio")
 
-    tab_geral, tab_casas = st.tabs(["Dados & Logo do Condomínio", "Cadastro das Unidades"])
+    tab_geral, tab_casas, tab_limpeza = st.tabs(["Dados & Logo do Condomínio", "Cadastro das Unidades", "🧹 Dados de Teste & Limpeza"])
 
     with tab_geral:
         col_dados, col_logo = st.columns([3, 2])
@@ -432,3 +432,26 @@ elif menu == "⚙️ Configurações & Unidades":
                         conn.close()
                         st.success(f"{novo_ident} atualizada com sucesso!")
                         st.rerun()
+
+    with tab_limpeza:
+        st.subheader("🧹 Limpeza de Dados de Teste")
+        st.write(
+            "Use esta opção enquanto estiver testando o sistema. "
+            "Você pode lançar pagamentos, despesas e anexar comprovantes de teste à vontade. "
+            "Quando estiver pronto para iniciar o uso oficial do condomínio, basta zerar as movimentações."
+        )
+
+        with st.container(border=True):
+            st.markdown("⚠️ **Atenção:**")
+            st.markdown(
+                "- Esta ação **apaga todos os lançamentos de receitas e despesas**.\n"
+                "- Esta ação **remove os comprovantes e notas anexadas** durante o teste.\n"
+                "- Os dados do condomínio (nome, endereço) e o cadastro dos moradores **NÃO serão apagados**."
+            )
+            
+            confirmar = st.checkbox("Confirmo que desejo apagar todas as movimentações e comprovantes de teste.")
+            
+            if st.button("🗑️ Zerar Lançamentos de Teste", type="primary", disabled=not confirmar):
+                db.zerar_lancamentos(limpar_arquivos=True)
+                st.success("✨ Todos os dados de teste foram apagados com sucesso! O sistema está limpo para o uso oficial.")
+                st.rerun()
