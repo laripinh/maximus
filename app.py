@@ -151,7 +151,7 @@ if menu == "📊 Dashboard do Mês":
 # ==============================================================================
 # 2. RECEITAS (UNIDADES)
 # ==============================================================================
-elif menu == "💰 Receitas das Unidades":
+elif menu == "💰 Receitas":
     st.title(f"💰 Receitas do Condomínio - {mes_sel[1]}/{ano_sel}")
     st.write("Acompanhe e dê baixa nos pagamentos da taxa condominial de cada unidade.")
 
@@ -250,7 +250,7 @@ elif menu == "🧾 Despesas":
                         "Outros Reparos"
                     ]
                 )
-                descricao = st.text_input("Descrição / Fornecedor (ex: EMBASA / NeoEnergia / Faxineira)", placeholder="Ex: Conta de água do condomínio")
+                descricao = st.text_input("Descrição / Fornecedor (ex: EMBASA / Neoenergia / Claro)", placeholder="Ex: Conta de água do condomínio")
                 valor = st.number_input("Valor da Despesa (R$)", min_value=0.01, step=10.0, format="%.2f")
 
             with col2:
