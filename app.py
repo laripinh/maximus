@@ -211,7 +211,7 @@ elif menu == "💰 Receitas das Unidades":
                                 comp_nome, comp_path = salvar_arquivo(comprovante, UPLOADS_RECEITAS)
                             
                             db.salvar_receita(
-                                casa_id=r["id"],
+                                casa_id=r["casa_id"],
                                 mes_ano=mes_ano,
                                 valor=novo_valor,
                                 data_pagamento=nova_data.strftime("%Y-%m-%d") if novo_status == "PAGO" else None,

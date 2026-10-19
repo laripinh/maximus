@@ -89,6 +89,9 @@ def init_db():
         VALUES (?, ?, ?, ?, ?)
         """, (num, f"Casa {num:02d}", f"Morador Casa {num:02d}", "", 300.00))
 
+    # Limpar registros corrompidos com casa_id nulo caso existam
+    cursor.execute("DELETE FROM receitas WHERE casa_id IS NULL")
+
     conn.commit()
     conn.close()
 
@@ -119,7 +122,22 @@ def get_receitas_mes(mes_ano):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
-    SELECT r.*, c.numero, c.identificacao, c.responsavel
+    SELECT 
+        c.id AS casa_id,
+        c.id AS id,
+        c.numero,
+        c.identificacao,
+        c.responsavel,
+        c.valor_cota,
+        r.id AS receita_id,
+        r.mes_ano,
+        r.valor,
+        r.data_pagamento,
+        COALESCE(r.status, 'PENDENTE') AS status,
+        r.forma_pagamento,
+        r.comprovante_nome,
+        r.comprovante_path,
+        r.observacoes
     FROM casas c
     LEFT JOIN receitas r ON c.id = r.casa_id AND r.mes_ano = ?
     ORDER BY c.numero ASC
