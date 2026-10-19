@@ -51,7 +51,7 @@ else:
 
 nome_condo_atual = db.get_config("nome_condominio", "Condomínio Máximus")
 st.sidebar.title(nome_condo_atual)
-st.sidebar.caption("Gestão Financeira & Balancete")
+st.sidebar.caption("Gestão Financeira e Balancete")
 
 st.sidebar.markdown("---")
 # Seleção de Mês e Ano
@@ -378,7 +378,7 @@ elif menu == "📄 Balancete":
 elif menu == "⚙️ Configurações":
     st.title("⚙️ Configurações do Condomínio")
 
-    tab_geral, tab_casas, tab_limpeza = st.tabs(["Dados & Logo do Condomínio", "Cadastro das Unidades", "🧹 Dados de Teste e Limpeza"])
+    tab_geral, tab_casas, tab_limpeza = st.tabs(["Dados do Condomínio", "Cadastro das Unidades", "Dados de Teste e Limpeza"])
 
     with tab_geral:
         col_dados, col_logo = st.columns([3, 2])
