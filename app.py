@@ -75,10 +75,10 @@ menu = st.sidebar.radio(
     "Menu Principal",
     [
         "📊 Dashboard do Mês",
-        "💰 Receitas das Unidades",
-        "🧾 Despesas & Notas Fiscais",
-        "📄 Balancete Oficial (PDF)",
-        "⚙️ Configurações & Unidades"
+        "💰 Receitas",
+        "🧾 Despesas",
+        "📄 Balancete",
+        "⚙️ Configurações"
     ]
 )
 
@@ -227,8 +227,8 @@ elif menu == "💰 Receitas das Unidades":
 # ==============================================================================
 # 3. DESPESAS E NOTAS FISCAIS
 # ==============================================================================
-elif menu == "🧾 Despesas & Notas Fiscais":
-    st.title(f"🧾 Despesas & Notas Fiscais - {mes_sel[1]}/{ano_sel}")
+elif menu == "🧾 Despesas":
+    st.title(f"🧾 Despesas - {mes_sel[1]}/{ano_sel}")
     st.write("Lance os pagamentos fixos (água, luz, faxina) e manutenções avulsas com anexo de notas fiscais.")
 
     with st.expander("➕ Lançar Nova Despesa / Nota Fiscal", expanded=False):
@@ -242,14 +242,15 @@ elif menu == "🧾 Despesas & Notas Fiscais":
                         "Água (Concessionária)",
                         "Energia Elétrica (Concessionária)",
                         "Funcionário / Limpeza / Zelador",
-                        "Manutenção Portão / Interfone",
+                        "Operadora do Interfone",
+                        "Manutenção Portão / Cerca / Câmeras / Interfone",
                         "Material de Limpeza / Jardinagem",
                         "Taxas Bancárias / Tarifas",
-                        "Honorários / Assessoria",
+                        "Honorários / Assessoria / Contabilidade",
                         "Outros Reparos"
                     ]
                 )
-                descricao = st.text_input("Descrição / Fornecedor (ex: Sabesp / Enel / Faxineira Maria)", placeholder="Ex: Conta de água do condomínio")
+                descricao = st.text_input("Descrição / Fornecedor (ex: EMBASA / NeoEnergia / Faxineira)", placeholder="Ex: Conta de água do condomínio")
                 valor = st.number_input("Valor da Despesa (R$)", min_value=0.01, step=10.0, format="%.2f")
 
             with col2:
@@ -322,7 +323,7 @@ elif menu == "🧾 Despesas & Notas Fiscais":
 # ==============================================================================
 # 4. BALANCETE OFICIAL (PDF)
 # ==============================================================================
-elif menu == "📄 Balancete Oficial (PDF)":
+elif menu == "📄 Balancete":
     st.title(f"📄 Balancete de Prestação de Contas")
     st.write(f"Competência: **{mes_sel[1]} de {ano_sel}**")
     st.info("O balancete consolida todas as receitas das unidades e todas as despesas lançadas com assinatura para o Conselho Fiscal.")
@@ -372,12 +373,12 @@ elif menu == "📄 Balancete Oficial (PDF)":
             st.write("Nenhuma despesa lançada.")
 
 # ==============================================================================
-# 5. CONFIGURAÇÕES & MORADORES
+# 5. CONFIGURAÇÕES
 # ==============================================================================
-elif menu == "⚙️ Configurações & Unidades":
+elif menu == "⚙️ Configurações":
     st.title("⚙️ Configurações do Condomínio")
 
-    tab_geral, tab_casas, tab_limpeza = st.tabs(["Dados & Logo do Condomínio", "Cadastro das Unidades", "🧹 Dados de Teste & Limpeza"])
+    tab_geral, tab_casas, tab_limpeza = st.tabs(["Dados & Logo do Condomínio", "Cadastro das Unidades", "🧹 Dados de Teste e Limpeza"])
 
     with tab_geral:
         col_dados, col_logo = st.columns([3, 2])
