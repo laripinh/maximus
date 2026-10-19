@@ -99,7 +99,7 @@ if menu == "📊 Dashboard do Mês":
     cota_padrao = float(db.get_config("valor_cota_padrao", "300.00"))
     total_previsto = sum(r.get("valor_cota", cota_padrao) for r in receitas)
     
-    total_gasto = sum(d["valor"] or 0.0 for r in despesas for d in [r] if d.get("status") == "PAGO")
+    total_gasto = sum(d["valor"] or 0.0 for d in despesas if d.get("status") == "PAGO")
     saldo_mes = total_arrecadado - total_gasto
     
     pagantes = sum(1 for r in receitas if r.get("status") == "PAGO")

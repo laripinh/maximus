@@ -80,8 +80,8 @@ def gerar_balancete_pdf(mes_ano):
 
     total_receitas = sum(r["valor"] or 0.0 for r in receitas if r.get("status") == "PAGO")
     total_receitas_previstas = sum(r["valor"] or 0.0 for r in receitas)
-    total_despesas = sum(d["valor"] or 0.0 for r in despesas if d.get("status") == "PAGO")
-    total_despesas_previstas = sum(d["valor"] or 0.0 for r in despesas)
+    total_despesas = sum(d["valor"] or 0.0 for d in despesas if d.get("status") == "PAGO")
+    total_despesas_previstas = sum(d["valor"] or 0.0 for d in despesas)
     
     saldo_mes = total_receitas - total_despesas
 
