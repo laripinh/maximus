@@ -176,7 +176,7 @@ elif menu == "💰 Receitas":
                     st.success(f"### {ident} ✅")
                     st.caption(f"👤 {resp}")
                     st.markdown(f"**Valor Pago:** {format_moeda(valor_atual)}")
-                    st.caption(f"🗓️ Data: {dt_pgto} | {r.get('forma_pagamento', 'Pix')}")
+                    st.caption(f"🗓️ Data: {dt_pgto} | {r.get('forma_pagamento', 'Boleto')}")
                     if tem_comprovante:
                         st.caption(f"📎 {r['comprovante_nome']}")
                 else:
@@ -199,7 +199,7 @@ elif menu == "💰 Receitas":
                                 pass
                         
                         nova_data = st.date_input("Data do Pagamento", value=data_padrao)
-                        forma = st.selectbox("Forma de Pagamento", ["Pix", "Boleto", "Transferência", "Dinheiro"], index=0)
+                        forma = st.selectbox("Forma de Pagamento", ["Boleto", "Pix", "Transferência", "Dinheiro"], index=0)
                         comprovante = st.file_uploader("Anexar Comprovante (PDF/Foto)", type=["pdf", "png", "jpg", "jpeg"], key=f"up_{num}")
                         obs = st.text_input("Observação", value=r.get("observacoes") or "")
 
@@ -229,7 +229,7 @@ elif menu == "💰 Receitas":
 # ==============================================================================
 elif menu == "🧾 Despesas":
     st.title(f"🧾 Despesas - {mes_sel[1]}/{ano_sel}")
-    st.write("Lance os pagamentos fixos (água, luz, faxina) e manutenções avulsas com anexo de notas fiscais.")
+    st.write("Lance os pagamentos fixos (água, luz, zelador) e manutenções avulsas com anexo de notas fiscais.")
 
     with st.expander("➕ Lançar Nova Despesa / Nota Fiscal", expanded=False):
         with st.form("form_nova_despesa", clear_on_submit=True):
